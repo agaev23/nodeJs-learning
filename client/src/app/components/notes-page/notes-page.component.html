@@ -1,0 +1,42 @@
+<app-header></app-header>
+<div class="container">
+    <h1>Todo List</h1>
+
+    <div>Add a new todo item:
+        <form>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <input value="Add Item" class="btn btn-outline-secondary" type="button" (click)="onAdd()">
+                </div>
+                <input [(ngModel)]="newNote" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Enter ToDoItem">
+            </div>
+        </form>
+
+
+        <div>
+            <h2 *ngIf="inCompletedNotes.length">Incomplete Items</h2>
+
+            <ul class="list-group">
+                <li *ngFor="let item of inCompletedNotes; let i = index" class="list-group-item" style="font-size: 30pt">
+                    <input 
+                        [(ngModel)]="inCompletedNotes[i].note" 
+                        [ngModelOptions]="{standalone: true}" 
+                        type="text" 
+                        class="note"
+                        (blur)="onSave(item)">
+                    <a class="btn btn-success active" (click)="onCheck(item._id)">Check</a>
+                    <a class="btn btn-danger active" (click)="onDelete(item._id)">Delete</a>
+                </li>
+            </ul>
+
+
+            <h2 *ngIf="completedNotes.length">Completed Items</h2>
+            <ul class="list-group">
+                <li *ngFor="let item of completedNotes" class="list-group-item" style="font-size: 30pt">
+                    <span class="note">{{item.note}}</span>
+                    <a class="btn btn-danger active" (click)="onDelete(item._id)">Delete</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

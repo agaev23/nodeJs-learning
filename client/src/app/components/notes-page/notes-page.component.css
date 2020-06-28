@@ -1,0 +1,10 @@
+.list-group-item {
+    display: flex;
+    align-items: center;
+}
+
+.note {
+    margin-right: auto;
+    border: none;
+    outline: none;
+}
